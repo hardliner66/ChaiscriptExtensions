@@ -1,0 +1,10 @@
+def __TEST__(req, res) {
+    var times_2 = fun(a) { a * 2 }
+    var div = fun(a, b) { if(b == 0) { nothing } else { a / b } }
+
+    Just(15) >> times_2 >> bind(div, _, 4) >> print // prints 7
+    Just(15) >> times_2 >> bind(div, _, 0) >> print // no output
+
+    print(Just(15) >> times_2 >> bind(div, _, 4))
+    print(Just(15) >> times_2 >> bind(div, _, 0))
+}

@@ -1,0 +1,27 @@
+// this uses the Maybe Type
+
+def match(o, fs) {
+    try {
+        Just(fs.filter(fun[o](f) {is_type(o, f.get_param_types().drop(1)[0].name)}).take(1).map(fun[o](f) { f(o) })[0])
+    } catch(e) {
+        nothing
+    }
+}
+
+match(1, [
+    fun(string x) {
+        x
+    },
+    fun(int x) {
+        x*2
+    }
+]) >> print
+
+match("1", [
+    fun(string x) {
+        x
+    },
+    fun(int x) {
+        x*2
+    }
+]) >> print
